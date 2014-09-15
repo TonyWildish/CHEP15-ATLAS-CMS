@@ -1,0 +1,15 @@
+Title: "Dimensions of Data Management: A taxonomy of data-transfer solutions in ATLAS and CMS"
+
+We present an abstract view of data-transfer architectures in use in ATLAS and CMS. We use this to classify data-transfer tools not in terms of their technology, but in terms of their more basic features, such as the properties of the traffic they handle and the use-cases they serve.
+
+This classification moves the focus from programming interfaces and technologies back into the original problem-space, which enables a number of things:
+
+- we can identify how existing tools can be re-factored according to common and technology-independent guidelines, which can facilitate re-use of code, both within and between experiments.
+
+- we can identify design patterns which work well for certain areas of the architectural phase-space. This can lead to greater robustness through re-use of good design and shallower learning curves for developers moving from project to project.
+
+- we can map new use-cases into the architectural phase-space independently of existing tools. This lets us see how components from existing tools could be used to solve new problems, which can lead to more rapid deployment of new solutions.
+
+- we provide a common language for expressing experiment needs to external providers, such as storage element developers, FTS3 developers, or WLCG and OSG.
+
+In this paper we show how data-transfer tools from both ATLAS and CMS fit into this architecture. We give examples of where this architecture would have improved our tool development in the past. Finally, we present a few sample use-cases for the future, and discuss them in terms of this architecture.
