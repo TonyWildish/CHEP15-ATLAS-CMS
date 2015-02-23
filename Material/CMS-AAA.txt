@@ -1,0 +1,17 @@
+AAA stands for 'Anydata, Anytime, Anywhere'. It's the CMS implementation of an xrootd federation.
+
+AAA does unscheduled transfers, in that there is no central planning that decides when they take place(*). Instead, the main use-case is for allowing jobs to run where CPU is available even if the data is not.
+
+The volume of data accessed by AAA is not fixed in any particular way, but is limited by the fraction of jobs we send to sites where we know the data is not available. Our aim is to have ~20% of our data accessed this way. This number was chosen in a totally arbitrary manner, as far as I can tell, simply to be neither 'too large' nor 'too small'.
+
+AAA deals with single files in any given 'transaction', transfers can be initiated transparently by batch jobs when they simply try to open the file. So there can in principle be thousands of machines launching transfers at the same time on the same link, and there is the potential for overloading the system with too many requests for files.
+
+Most CMS sites participate in the AAA federation, so the topology is very similar to that of PhEDEx. The PhEDEx 'link' concept is replaced by one of locality, where nearby replicas are attempted before falling back to more remote replicas. While the federation is somewhat robust against site failures it is expected that sites provide a regular and reliable service.
+
+Low-latency is a strong requirement for AAA, we don't want batch-jobs stalling waiting for data. Throughput is also an important requirement, for the same reason. Reliability is less of a strong concern, since if a site goes down for some reason it is likely that the same data can be accessed from somewhere else with only a modest performance penalty.
+
+AAA is inherently multi-user, accessing files with the users' proxy from their batch jobs (so it deals with up to a few hundred users in total). This is more for authorisation than security, in order to ensure that the person is a member of the CMS VO. (I'm pretty sure all this is correct, but I'm no AAA expert)
+
+There is no permanent metadata store that records information about accesses (unless you count the logfiles!).
+
+(*) but we do plan to use it for remote reprocessing, i.e. to allow data hosted at T1 sites to be processed by CPUs at satelite T2's.

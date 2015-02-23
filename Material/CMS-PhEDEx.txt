@@ -1,0 +1,21 @@
+PhEDEx is the data-placement management system for CMS. It handles all our scheduled data-movement, moving raw and reconstructed experiment data to archival storage, analysis data to T2's, and monte carlo data from production sites to places where it is stored and analysed.
+
+PhEDEx transfers in units of 'blocks' or datasets of files, where a dataset is composed of several blocks. A block is (ideally) ~1 TB, so several hundred files.
+
+PhEDEx is a 'single-user' application, it does not have the concept of file-ownership or quotas. This is not strictly true, in that we do have the concept of 'group ownership' of a replica of a dataset within PhEDEx, but this is not mapped to the filesystem. I.e. although all data is 'owned' by a group, this is purely an accounting tool, and files on storage have the same permissions whichever group owns them.
+
+PhEDEx transfers are initiated by agents running at each site, so there are ~70 places where transfers are started from. Each agent processes it's queue in an efficient manner, launching a number of parallel transfers that is well-suited to the network and storage capabilities.
+
+PhEDEx is designed for high reliability. If a tranfer fails, PhEDEx will back-off and retry, indefinitely, or until the transfer is cancelled. It is a fundamental principle of PhEDEx that it not lose data or fail to complete a transfer request.
+
+Latency is not a significant design issue. This is a consequence of its age, PhEDEx is over 11 years old now. At the time it was designed, the network was considered to be unreliable, and was expected to be a heavily-used resource. Consequently, transfer-failures were seen as expensive, and PhEDEx will back off fast to allow time for operators to resolve issues before trying again.
+
+PhEDEx does not interact with any other metadata catalogue. PhEDEx is the authoritative data-location service for CMS, knowing about every file-replica for centrally-managed data in CMS. PhEDEx knows the location, creation-time, checksum and size of all files, as well as their organisation into 'blocks' and 'datasets'.
+
+PhEDEx handles large volumes of data. Each site has three priority levels in a queue, and each queue is up to 15 TB deep, so there may be as much as 45 TB queued for any given site at any given time. There may be much more data waiting to be queued for each site, there is no hard limit, central agents will top-up the site agents queues as they are drained.
+
+The total volume of data handled is about 2 PB per week, CMS-wide. Traffic between any two sites is highly erratic, depending on local demand and CMS operations requirements at any given time.
+
+The PHEDEx network is static, with sites being added and removed only rarely (1-2 per year). There are about 55 T2 sites, a couple of dozen T3's, and the usual complement of T1's and a T0.
+
+PhEDEx maintains 'links' between these sites, essentially a flag saying that transfers from a given source to a given destination are permitted. This was how the MONARC model was enforced in the past, but now we allow full-mesh transfers, from anywhere to anywhere.

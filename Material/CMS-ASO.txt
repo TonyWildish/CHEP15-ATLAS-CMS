@@ -1,0 +1,17 @@
+ASO is the Asynchronous StageOut component of CRAB. It's primary purpose is to transfer user-files from the site where they are created by a batch job to the final destination specified by the user.
+
+ASO is designed to deal with up to 200K files per day, where files are expected to be ~1 GB or less. In fact, files are often _much_ less than 1 GB, so we can estimate about 20-50 TB per day on average, or about the same level as AAA (c.f. ~290 TB/day for PhEDEx transfers).
+
+The same set of CMS sites participate in the topology, but there is no concept of links or locality for transfers, anywhere to anywhere else is allowed. There is no fall-back to alternate destinations if the primary destination is down, so sites are expected to remain operational.
+
+Data is sent using FTS3, so flows are channeled in a way that should not overload the destination site. This is more PhEDEx-like than AAA-like.
+
+Throughput is not a particular issue with the volume of data in question. However, it does come into play since users typically submit several hundred jobs in a CRAB 'task', which will normally run at the same site and will stage out to the same location, so there may be hundreds of files for a single user on a given network path.
+
+Latency should be low, much lower than for PhEDEx, since users will be waiting for their results. Returning the first set of files within an hour or two is considered adequate, the user then has something to look at.
+
+Reliability is important, given that lost transfers mean lost CPU because the jobs will be re-run from scratch. So the system has retries and back-off mechanisms similar to PhEDEx, though it does not back off as far or as fast.
+
+Users are identified by their proxy, which the batch job has access to, just like for AAA. Files can only be written into areas that are pre-defined, and pre-arranged sites, for each user. There is no globally writeable filesystem that users can write into.
+
+There is significant metadata to manage. CRAB bookkeeping must be kept up to date to ensure that users know what is happening to their files, and the data must be publised in DBS (the Dataset Bookkeeping Service) to record their provenance.

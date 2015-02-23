@@ -1,1 +1,6 @@
+Please add your email & affiliations here!
+
 Tony Wildish - awildish@princeton.edu - Princeton University, USA
+Alessandro di Girolamo, CERN
+Simone Campana, CERN
+Vincenct Garonne, CERN
