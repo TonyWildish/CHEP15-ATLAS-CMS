@@ -1,0 +1,25 @@
+Dimensions of Data Management
+
+We propse the following set of properties of a data management system as its dimensions
+
+Data-volume: the amount of data being handled by a system is a fundamental property. An experiments' file-catalogue, for example, knows about all the files the experiment has produced. A data-movement system, on the other hand, may know only about the files which are in transit, or which are queued for transfer, at any particular point in time.
+
+Network structure. This has several components, such as:
+
+  Number of nodes: Networks may have a small number of nodes, such as the set of T0/T1/T2 sites managed by the experiment, or they may have a much larger number, maybe including every personal desktop/laptop in the collaboration, or every worker-node that produces or accesses data.
+
+  Node topology: Topology can be fixed or dynamic. The set of T0/T1/T2 sites in an experiment does not often change, so can be viewed as essentially a static topology. However, sites can go down for maintenance or because of emergencies, and managing such behaviour can be challenging. Opportunistic resources, volunteer computing, or personal laptops show far more dynamic behaviour, they may join and leave the network topology with little notice. In the case of laptops they can also leave and re-join from different locations as they move from place to place. So not only the number of nodes can be dynamic, their underlying connectivity may change too.
+
+  Types of data-flows: The type, or characteristics, of the data in a network may vary. The traffic between any two nodes may be bursty (e.g. raw data from the detector, following the accelerator-cycle) or more continuous (e.g. data from monte carlo production). The data-flows themselves may be statically defined (e.g. raw data from the detector to the T0), or the set of data-flows may change continuously (e.g. a T2 that downloads analysis data from multiple sources).
+
+Throughput: The throughput characteristics may vary considerably. For most data, 'as fast as possible' is the requirement. There may be specific deadlines involved, e.g. in evacuating data from an opportunistic or shared resource which is scheduled to be returned to another user. There may also be benefits from managing the traffic, for example in scheduling traffic from thousands of worker nodes in order not to overwhelm the destination.
+
+Latency: Similarly to throughput, the usual requirement is to minimise latency. However, that means different things in different situations. For archiving custodial raw data, a latency of a few hours is acceptable. For a batch-job waiting to read a file, latency of the order of a few seconds is more important. In situations where latency demands cannot be met (e.g. a server holding the data crashes and must be rebooted) the response of the system can vary. Does it simply give up and report an error, or does it continue to try until it gets the data eventually?
+
+Reliability: What does reliability mean for a given use-case? Clearly for custodial raw data the reliability should be close to 100%, all the data should be delivered if it is not lost beforehand. For data from opportunistic resources, volunteer computing or from monte-carlo production, a certain amount of loss may be acceptable.
+
+Users and security: This covers a few related items. How many users does the system have to handle? A single-user system is obviously easier to design than a multi-user system, but retro-fitting it to handle multiple users later may be very expensive. If the system is designed to handle more than one user, what kind of authentication, authorisation and accounting are needed? Are all users considered equal or is there a hierarchy, with some users more important than others?
+
+Metadata management: No system is complete without some sort of bookkeeping. How much metadata, where it comes from, how it is stored, are all important considerations. This also covers interaction with the system by users or external components. How does a request enter the system, how is it monitored, what sort of interaction is possible (e.g. suspending or resuming transfers).
+
+Not all of these dimensions are orthogonal. For example, designing a system for very low latency may mean sacrificing some level of reliability or throughput. Conversely, requiring very high reliability may mean accepting long latencies in some cases.
