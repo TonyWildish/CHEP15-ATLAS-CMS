@@ -4,3 +4,4 @@ Tony Wildish - awildish@princeton.edu - Princeton University, USA
 Alessandro di Girolamo, CERN
 Simone Campana, CERN
 Vincenct Garonne, CERN
+Mario Lassnig, CERN
