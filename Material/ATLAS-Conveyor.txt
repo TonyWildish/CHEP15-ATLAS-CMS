@@ -1,0 +1,12 @@
+The conveyor is the transfer management component of Rucio. The conveyor is designed for ATLAS Run-2 nominal throughput at 2 million file transfers per day. It's purpose is manyfold:
+
+0. keep consistent state and history of globally distributed transfers
+1. translate transfer and stage-in requests into actual requests understood by a transfertool, e.g., FTS3
+2. group requests where sensible, e.g., with the same source and destination, or belonging to the same replication rule
+3. divide requests into separate activity shares, e.g., for Tier-0 or Monte Carlo Production
+4. submit these requests to a transfertool as a transfer job
+5. receive transfer job data from an asynchronous message broker
+6. poll the detailed data of recently terminated jobs from the transfertool
+7. poll the status, and potentially detailed data if terminated, of lingering requests
+
+Each step is implemented asynchronously as a separate stateless services. The services orchestrate themselves only via the single shared backend database. Each service is guaranteed to only work on a subset of the requests, such that there is no overlap, competition, or potential lock-out.
