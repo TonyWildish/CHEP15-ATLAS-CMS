@@ -1,0 +1,7 @@
+Conclusions
+
+We have described the architecture of several data management systems used by the ATLAS and CMS experiments, their primary use-cases and the considerations behind their design. Even with this plethora of systems, it is not clear that all the future use-cases of the experiments will be satisfied automatically.
+
+We propose a set of principles, 'dimensions of data management', which we believe are a more fundamental way of looking at these systems than use-cases and requirements documents. We suggest that the future evolution of these systems, and the design of any new systems, should follow these principles as a key factor in defining their architecture.
+
+We believe this will lead to more maintainable, more flexible systems, with components and code that can be re-used in ways that are not anticipated when they are created. Given the long lifetime of LHC, we think this will be an important contribution to future productivity, with shorter development times and less overhead for maintenance and operations.
