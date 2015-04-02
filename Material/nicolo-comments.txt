@@ -1,0 +1,49 @@
+
+
+Hi Tony,
+
+looks good in general! Some suggestions below
+
+N
+
+===
+My comments on the actual poster content:
+
+1) Overall, the poster looks "top-heavy" to me: the introduction and the
+description of the current systems take up more than half of the page, 
+the actual "DoDM" only show up around 2/3rds of the length. Maybe shrink
+the product descriptions and enlarge the "DoDM"?
+2) In my opinion,  the "Interactions of the system with users and
+external components" could deserve their own box separate from "Metadata
+management", your call
+3) I had an idea about one additional box, something like "Managing
+shares" of limited resources like storage space and bandwidth (it's
+implicitly part of "Data-volume" and "Throughput", does it deserve it's
+own box? Again your call)
+4) In the conclusion, it's not very clear to me how you plan to make use
+of the DoDM in actual design of future products...
+
+===
+Minor typos and comments:
+* in the Author list, you are listed as 'name surname' but all ATLAS
+people are listed as 'surname name'.
+* PhEDEx box, Rucio box, Reliability box, Network structure box:
+"monte-carlo"-->"Monte Carlo" (the simulation method really takes the
+name from the city with the casino  )
+*ASO box: "It's"-->"Its"
+* ASO box: I think it's strange to put the total rate for AAA and PhEDEx
+only in the ASO box for comparison. For me it makes more sense to put a
+separate sentence in each box
+*AAA box: there's an asterisk for a note with no note attached
+*AAA box: the name of the project is "Any Data, Anytime, Anywhere"
+* Rucio box: "meta-data"-->"metadata"
+* Rucio box: "has client server and daemons architecture"-->"has a
+client server and daemons architecture"
+* Rucio box: why is a detailed paragraph on architecture only included
+for Rucio?
+* FAX box: "all of the ATLAS analysis job"-->"all of the ATLAS analysis
+jobs"
+* FAX box: the picture is almost unreadable even at full zoom
+* Latency box: capitalize "minimize"-->"Minimize"
+
+

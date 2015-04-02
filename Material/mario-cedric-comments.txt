@@ -1,0 +1,46 @@
+>>>  I'm not so sure about data-popularity though. To me that seems more
+>>> workload related than data-management related. Put differently, we might
+>>> use popularity information to help place data, but we wouldn't use it to
+>>> design the data-placement system. Would we?
+>>
+>> We do need a way to collect this information though. What we actually do
+>> with that information is another story. This can be done either on the
+>> workload management part, or on the data management part. However, they
+>> both have different metrics that could be tuned. For example,
+>> distribution of important data for consistency/integrity might not
+>> coincide with the actual analysis program flow.
+>>
+>> And as we have seen, unfortunately, collecting this information is not
+>> straightforward either. Reliable and efficient monitoring of access
+>> patterns is quite tricky.
+>
+>  true, we need that information. In our case we get it all from CRAB, or
+> CMSSW at file-open time, so it's al in the WM. The only part where the
+> DM system is involved at all is in the case of AAA (xrootd) access,
+> where we rely on xrootd to tell us which file-replica was opened.
+>
+>  So I guess the abstraction here is file-access information, whether it
+> be used for popularity or whatever?
+
+I could agree to that. In the paper we can highlight the differences
+there, because in ATLAS we quite a bit of file accesses outside the
+workload management system.
+
+Cheers,
+Mario
+
+>>>> I read the Wiki about the dimension of data management. From my point of
+>>>> view there are some aspects that are quite important in ATLAS that are
+>>>> not listed there (please Alessandro et al. comment if you think I'm wrong).
+>>>> Data lifecycle/deletion : Do we need to keep all data forever ? In ATLAS
+>>>> the answer is no because of the disk space constraint. Data lifecycle
+>>>> policies are needed (for the users' data as well as production data).
+>>>> Efficient deletion service is needed to remove deprecated data.
+>>>> Consistency : How the consistency of the files is ensured ? It includes
+>>>> both the identification of corrupted/lost files and the recovery.
+>>>> Data popularity : How can we evaluate the popularity of datasets ? Can
+>>>> we rely on it to preplace additional copies of popular datasets to
+>>>> decrease the latency when processing them ?
+>>>>
+>>>> Cheers,
+>>>> Cedric
