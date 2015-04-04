@@ -46,4 +46,8 @@ jobs"
 * FAX box: the picture is almost unreadable even at full zoom
 * Latency box: capitalize "minimize"-->"Minimize"
 
+--------------------------------------------------
 
+1) Data-volume could deal not just with the total volume but also with the minimum or atomic volume managed: e.g. We currently have blocks in PhEDEx or files in AAA and FAX;  in the future we could have events from event services or even sub-event, or across events  (E.g. Serve all muons in a dataset)
+
+2) in the spirit of DoDM as defined in the intro, let's check which boxes are orthogonal and which are dependent. E.g. "Users and security" (who can perform an action)  is partially dependent on "Interactions with the service" (which actions are defined) since the list of allowed actions is obviously a subset of the possible actions.
